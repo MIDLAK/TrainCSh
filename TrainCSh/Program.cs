@@ -9,7 +9,9 @@ namespace TrainCSh
             Passenger vadim = new Passenger("Вадим", "Калга", 19);
             vadim.FirstName = "Калуга";
             Passenger passenger = new Passenger();
-            Console.WriteLine("Первый пассажир: {1} {0} и ему {2} лет", vadim.Name, vadim.FirstName, vadim.Age);
+            passenger.UserInput();
+            vadim.Print();
+            passenger.Print();
         }
     }
 }
