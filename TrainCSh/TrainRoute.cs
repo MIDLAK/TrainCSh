@@ -11,6 +11,7 @@ namespace TrainCSh
         private string destination;
         private DateTime departureDate;
         private DateTime destinationDate;
+
         private string dateFormat = "dd.MM.yyyy HH:mm";
 
 
