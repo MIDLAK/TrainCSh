@@ -6,20 +6,22 @@ namespace TrainCSh
     {
         static void Main(string[] args)
         {
-            Passenger vadim = new Passenger("Вадим", "Калга", 19);
-            vadim.FirstName = "Калуга";
             Passenger passenger = new Passenger();
             passenger.UserInput();
-            vadim.Print();
-            passenger.Print();
 
-            DateTime day1 = new DateTime(2021, 10, 26, 21, 59, 0);
-            DateTime day2 = new DateTime(2021, 10, 30, 12, 17, 0);
-            TrainRoute route = new TrainRoute("Барнаул", "Омск", day1, day2);
-            route.Print();
+            TrainRoute barnaulOmsk = new TrainRoute();
+            DateTime dep = new DateTime(2021, 10, 27, 13, 38, 00);
+            DateTime des = new DateTime(2021, 10, 30, 11, 01, 00);
 
+            barnaulOmsk.Departure = "Барнаул";
+            barnaulOmsk.Destination = "Омск";
+            barnaulOmsk.DepartureDate = dep;
+            barnaulOmsk.DestinationDate = des;
 
+            Train train = new Train(barnaulOmsk, 12, 100);
 
+            Ticket ticket = new Ticket(700, 7, passenger, train);
+            ticket.Print();
 
         }
     }
