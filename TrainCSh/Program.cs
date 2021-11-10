@@ -13,6 +13,11 @@ namespace TrainCSh
             DateTime dep = new DateTime(2021, 10, 27, 13, 38, 00);
             DateTime des = new DateTime(2021, 10, 30, 11, 01, 00);
 
+
+            DateTime dep1 = new DateTime(2021, 10, 30, 13, 38, 00);
+            DateTime des1 = new DateTime(2021, 11, 1, 11, 01, 00);
+            TrainRoute omskEkaterenburg = new TrainRoute("Барнаул", "Екатеринбург", dep1, des1);
+
             barnaulOmsk.Departure = "Барнаул";
             barnaulOmsk.Destination = "Омск";
             barnaulOmsk.DepartureDate = dep;
@@ -20,10 +25,14 @@ namespace TrainCSh
 
             Train train = new Train(barnaulOmsk, 12, 100);
 
+            Console.WriteLine("Вместимость поезда ДО: " + train.Capacity);
+            train++;
+            Console.WriteLine("Вместимость поезда ПОСЛЕ: " + train.Capacity);
+
             Ticket ticket = new Ticket(700, 7, passenger, train);
             ticket.Print();
 
-            train.TrainID = 55;
+            train.Route = barnaulOmsk + omskEkaterenburg;   //перегрузка оператора '+'
 
         }
     }

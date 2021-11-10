@@ -11,7 +11,7 @@ namespace TrainCSh
         private int trainID;
         private int capacity;   //вместимость поезда
 
-        private List<Observer> observers;
+        private List<Observer> observers;   //массив наблюдателей
 
         public Train() : this(new TrainRoute(), 1, 0) { }
 
@@ -47,6 +47,12 @@ namespace TrainCSh
                     MeasurementsChanged();
                 }
             } 
+        }
+
+        public static Train operator ++(Train train)
+        {
+            train.Capacity += 100;  //добавляем вагон к поезду
+            return train;
         }
 
         public int Capacity 

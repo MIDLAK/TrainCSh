@@ -25,7 +25,8 @@ namespace TrainCSh
                 this.destination = destination;
                 this.departureDate = departureDate;
                 this.destinationDate = destinationDate;
-            } else
+            }
+            else
             {
                 this.departure = "-";
                 this.destination = "-";
@@ -34,8 +35,19 @@ namespace TrainCSh
             }
         }
 
+        public static TrainRoute operator +(TrainRoute route1, TrainRoute route2)
+        {
+            TrainRoute route3 = new TrainRoute();
+            route3.DepartureDate = route1.DepartureDate;
+            route3.DestinationDate = route2.DestinationDate;
+            route3.Departure = route1.Departure;
+            route3.Destination = route2.Destination;
+            return route3;
+        }
+
         public void Print()
         {
+            Console.WriteLine("Пункт прибытия -> Пункт назначения: {0} -> {1}", departure, destination);
             Console.WriteLine("Дата отправления: {0}", departureDate.ToString(dateFormat));
             Console.WriteLine("Дата прибытия: {0}", destinationDate.ToString(dateFormat));
             TimeSpan travel = TravelTime();
@@ -48,7 +60,7 @@ namespace TrainCSh
             return travel;
         }
 
-        public string Departure 
+        public string Departure
         {
             get
             {
@@ -64,7 +76,7 @@ namespace TrainCSh
             }
         }
 
-        public string Destination 
+        public string Destination
         {
             get
             {
@@ -77,10 +89,10 @@ namespace TrainCSh
                 {
                     destination = value;
                 }
-            } 
+            }
         }
 
-        public DateTime DepartureDate 
+        public DateTime DepartureDate
         {
             get
             {
@@ -94,10 +106,10 @@ namespace TrainCSh
                     departureDate = value;
                 }
 
-            } 
+            }
         }
 
-        public DateTime DestinationDate 
+        public DateTime DestinationDate
         {
             get
             {
@@ -110,7 +122,7 @@ namespace TrainCSh
                 {
                     destinationDate = value;
                 }
-            } 
+            }
         }
 
         private bool IsValidDeparture(string departure)
