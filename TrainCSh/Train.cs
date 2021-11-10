@@ -1,19 +1,24 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace TrainCSh
 {
-    class Train
+    class Train : Subject
     {
         private TrainRoute route;
         private int trainID;
         private int capacity;   //вместимость поезда
 
+        private List<Observer> observers;
+
         public Train() : this(new TrainRoute(), 1, 0) { }
 
         public Train(TrainRoute route, int trainID, int capacity)
         {
+            observers = new List<Observer>();
+
             if (route != null && IsValidTrainID(trainID) && IsValidCapacity(capacity))
             {
                 this.route = route;
@@ -39,6 +44,7 @@ namespace TrainCSh
                 if (IsValidTrainID(value))
                 {
                     trainID = value;
+                    MeasurementsChanged();
                 }
             } 
         }
@@ -55,6 +61,7 @@ namespace TrainCSh
                 if (IsValidCapacity(value))
                 {
                     capacity = value;
+                    MeasurementsChanged();
                 }
             } 
         }
@@ -71,6 +78,7 @@ namespace TrainCSh
                 if (value != null)
                 {
                     route = value;
+                    MeasurementsChanged();
                 }
             } 
         }
@@ -89,6 +97,35 @@ namespace TrainCSh
         {
             Console.WriteLine("Номер поезда: {0}", trainID);
             route.Print();
+        }
+
+        public void RegisterObserver(Observer o)
+        {
+            observers.Add(o);
+        }
+
+        public void RemoveObserver(Observer o)
+        {
+            int i = observers.IndexOf(o);
+            if (i >= 0)
+            {
+                observers.RemoveAt(i);
+            }
+        }
+
+        public void NotifyObservers()
+        {
+            for(int i = 0; i < observers.Count; i++)
+            {
+                Observer observer = (Observer)observers[i];
+                observer.Update(route, trainID, capacity);
+            }
+        }
+        
+        /*оповещение наблюдателей об изменении*/
+        public void MeasurementsChanged()
+        {
+            NotifyObservers();
         }
     }
 }

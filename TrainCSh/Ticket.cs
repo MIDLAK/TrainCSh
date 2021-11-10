@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TrainCSh
 {
-    class Ticket
+    class Ticket : Observer
     {
         private int price;
         private int seat;
@@ -19,10 +19,12 @@ namespace TrainCSh
             this.Price = price;
             this.Passenger = passenger;
             this.Train = train;
+            if (train != null)
+                train.RegisterObserver(this);   //регистрация наблюдателя
         }
 
-        public int Price 
-        { 
+        public int Price
+        {
             get => price;
             set
             {
@@ -30,7 +32,7 @@ namespace TrainCSh
                 {
                     price = value;
                 }
-            } 
+            }
         }
 
         private bool IsValidPrice(int price)
@@ -38,21 +40,21 @@ namespace TrainCSh
             return price >= 0;
         }
 
-        public Passenger Passenger 
-        { 
+        public Passenger Passenger
+        {
             get => passenger;
-            
-            set 
+
+            set
             {
                 if (value != null)
                 {
                     passenger = value;
                 }
-            } 
+            }
         }
 
-        public Train Train 
-        { 
+        public Train Train
+        {
             get => train;
 
             set
@@ -61,11 +63,11 @@ namespace TrainCSh
                 {
                     train = value;
                 }
-            } 
+            }
         }
 
-        public int Seat 
-        { 
+        public int Seat
+        {
             get => seat;
 
             set
@@ -74,7 +76,7 @@ namespace TrainCSh
                 {
                     seat = value;
                 }
-            } 
+            }
         }
 
         private bool IsValidSeat(int seat)
@@ -90,6 +92,14 @@ namespace TrainCSh
             passenger.Print();
             train.Print();
             Console.WriteLine("-----------------------------");
+        }
+
+        public void Update(TrainRoute route, int trainID, int capacity)
+        {
+            Console.WriteLine("\n-!-!-!-!-!-!-ВНИМАНИЕ-!-!-!-!-!-!-");
+            Console.WriteLine("Произошло обновление информации в биллете. Ознакомтесь: ");
+            this.Print();
+            Console.WriteLine("\n");
         }
     }
 }

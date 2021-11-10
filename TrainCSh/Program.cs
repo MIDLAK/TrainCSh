@@ -23,6 +23,8 @@ namespace TrainCSh
             Ticket ticket = new Ticket(700, 7, passenger, train);
             ticket.Print();
 
+            train.TrainID = 55;
+
         }
     }
 }
