@@ -99,7 +99,8 @@ namespace TrainCSh
             }
             catch
             {
-                throw new Exception("Возраст должен быть введён цифрой!");
+                OneTwoThree(out age);
+                //throw new Exception("Возраст должен быть введён цифрой!");
             }
 
             if (IsValidName(ref name) && IsValidFirstName(ref firstName) && IsValidAge(age))
@@ -112,6 +113,12 @@ namespace TrainCSh
             {
                 throw new Exception("Ошибка ввода!");
             }
+        }
+
+        private void OneTwoThree(out int age)
+        {
+            Random randomAge = new Random();
+            age = randomAge.Next(1, 100);   //задаётся случайное значение возраста от 1 до 100 лет
         }
 
         private bool IsValidAge(int age)
