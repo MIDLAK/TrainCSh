@@ -12,7 +12,7 @@ namespace TrainCSh
         private DateTime departureDate;
         private DateTime destinationDate;
 
-        private string dateFormat = "dd.MM.yyyy HH:mm";
+        private static string dateFormat = "dd.MM.yyyy HH:mm";
 
 
         public TrainRoute() : this("-", "-", new DateTime(), new DateTime()) { }
@@ -124,6 +124,8 @@ namespace TrainCSh
                 }
             }
         }
+
+        public static string DateFormat { get => dateFormat; set => dateFormat = value; }
 
         private bool IsValidDeparture(string departure)
         {

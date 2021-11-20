@@ -31,6 +31,8 @@ namespace TrainCSh
 
             Ticket ticket = new Ticket(700, 7, passenger, train);
             ticket.Print();
+            TrainRoute.DateFormat = "yyyy-MM-dd HH:mm:ss";
+            ticket.Print();
 
             train.Route = barnaulOmsk + omskEkaterenburg;   //перегрузка оператора '+'
 
