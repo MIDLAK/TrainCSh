@@ -14,7 +14,7 @@ namespace TrainCSh
 
         public Passenger(string name, string firstName, int age)
         {
-            if (IsValidAge(age) && IsValidName(name) && IsValidFirstName(firstName))
+            if (IsValidAge(age) && IsValidName(ref name) && IsValidFirstName(ref firstName))
             {
                 this.Name = name;
                 this.FirstName = firstName;
@@ -36,7 +36,7 @@ namespace TrainCSh
 
             set
             {
-                if (IsValidName(value))
+                if (IsValidName(ref value))
                 {
                     name = value;
                 }
@@ -52,7 +52,7 @@ namespace TrainCSh
 
             set
             {
-                if (IsValidFirstName(value))
+                if (IsValidFirstName(ref value))
                 {
                     firstName = value;
                 }
@@ -102,7 +102,7 @@ namespace TrainCSh
                 throw new Exception("Возраст должен быть введён цифрой!");
             }
 
-            if (IsValidName(name) && IsValidFirstName(firstName) && IsValidAge(age))
+            if (IsValidName(ref name) && IsValidFirstName(ref firstName) && IsValidAge(age))
             {
                 this.name = name;
                 this.firstName = firstName;
@@ -119,14 +119,16 @@ namespace TrainCSh
             return age > 0;
         }
 
-        private bool IsValidName(string name)
+        private bool IsValidName(ref string name)
         {
-            return name.Trim().Length > 0;
+            name = name.Trim();
+            return name.Length > 0;
         }
 
-        private bool IsValidFirstName(string firstName)
+        private bool IsValidFirstName(ref string firstName)
         {
-            return firstName.Trim().Length > 0;
+            firstName = firstName.Trim();
+            return firstName.Length > 0;
         }
 
     }
