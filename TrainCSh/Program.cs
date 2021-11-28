@@ -35,6 +35,17 @@ namespace TrainCSh
             train.Print();
             Console.WriteLine("-------------------------------------------------");
 
+            Train train1 = new Train(56);
+            Train train2 = new Train(77);
+            Train train3 = new Train(81);
+
+            Depot depot = new Depot(3);
+            depot.ToParkTrain(train1);
+            depot.ToParkTrain(train2);
+            depot.ToParkTrain(train3);
+
+            depot.Print();
+
             Console.WriteLine("Вместимость поезда ДО: " + train.Capacity);
             train++;
             Console.WriteLine("Вместимость поезда ПОСЛЕ: " + train.Capacity);
