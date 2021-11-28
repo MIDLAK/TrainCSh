@@ -23,7 +23,17 @@ namespace TrainCSh
             barnaulOmsk.DepartureDate = dep;
             barnaulOmsk.DestinationDate = des;
 
-            Train train = new Train(barnaulOmsk, 12, 100);
+
+            Console.WriteLine("-----------*Демонстрация конструктора*-----------");
+            Train train = new Train();
+            train.Print();
+            Console.WriteLine("-------------------------------------------------");
+            train = new Train(25);
+            train.Print();
+            Console.WriteLine("-------------------------------------------------");
+            train = new Train(barnaulOmsk, 12, 100);
+            train.Print();
+            Console.WriteLine("-------------------------------------------------");
 
             Console.WriteLine("Вместимость поезда ДО: " + train.Capacity);
             train++;

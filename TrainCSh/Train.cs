@@ -13,7 +13,9 @@ namespace TrainCSh
 
         private List<Observer> observers;   //массив наблюдателей
 
-        public Train() : this(new TrainRoute(), 1, 0) { }
+        public Train() : this(new TrainRoute(), 1, 1) { }
+
+        public Train(int trainID) : this(new TrainRoute(), trainID, 1) { }
 
         public Train(TrainRoute route, int trainID, int capacity)
         {
