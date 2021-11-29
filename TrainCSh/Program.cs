@@ -7,7 +7,18 @@ namespace TrainCSh
         static void Main(string[] args)
         {
             Passenger passenger = new Passenger();
-            passenger.UserInput();
+            while (true)
+            {
+                try
+                {
+                    passenger.UserInput();
+                    break;
+                } catch
+                {
+                    Console.WriteLine("ВНИМАНИЕ! Произошла ошибка при вводе.Пожалуйста, повторите его.");
+                }
+            }
+            
 
             TrainRoute barnaulOmsk = new TrainRoute();
             DateTime dep = new DateTime(2021, 10, 27, 13, 38, 00);
