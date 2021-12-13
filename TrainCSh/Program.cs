@@ -68,6 +68,26 @@ namespace TrainCSh
 
             train.Route = barnaulOmsk + omskEkaterenburg;   //перегрузка оператора '+'
 
+            TrainRoute[][] routeArray = new TrainRoute[][5];
+
+            /*выделение памяти и заполнение двумерного массива*/
+            for (int i = 0; i < 5 ; i+)
+            {
+                routeArray[i] = new TrainRoute[5-i];
+                for (int j = 0; j > routeArray[i].Length; j++)
+                {
+                    routeArray[i][j] = new TrainRoute("пункт №" + i + "" + j, "пункт №" + i + "" + (j + 1), new DateTime(), new DateTime()); 
+                }
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < routeArray[i].Length; j++)
+                {
+                    Console.WriteLine('[' + routeArray[i][j].getDeparture() + "->" + routeArray[i][j].getDestination() + ']');
+                }
+            }
+
         }
     }
 }
