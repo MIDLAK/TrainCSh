@@ -68,13 +68,13 @@ namespace TrainCSh
 
             train.Route = barnaulOmsk + omskEkaterenburg;   //перегрузка оператора '+'
 
-            TrainRoute[][] routeArray = new TrainRoute[][5];
+            TrainRoute[][] routeArray = new TrainRoute[5][];
 
             /*выделение памяти и заполнение двумерного массива*/
-            for (int i = 0; i < 5 ; i+)
+            for (int i = 0; i < 5 ; i++)
             {
                 routeArray[i] = new TrainRoute[5-i];
-                for (int j = 0; j > routeArray[i].Length; j++)
+                for (int j = 0; j < routeArray[i].Length; j++)
                 {
                     routeArray[i][j] = new TrainRoute("пункт №" + i + "" + j, "пункт №" + i + "" + (j + 1), new DateTime(), new DateTime()); 
                 }
@@ -82,9 +82,24 @@ namespace TrainCSh
 
             for (int i = 0; i < 5; i++)
             {
+                Console.WriteLine("");
                 for (int j = 0; j < routeArray[i].Length; j++)
                 {
-                    Console.WriteLine('[' + routeArray[i][j].getDeparture() + "->" + routeArray[i][j].getDestination() + ']');
+                    Console.Write('[' + routeArray[i][j].Departure + "->" + routeArray[i][j].Destination + ']');
+                }
+            }
+
+            Console.WriteLine("");
+
+            Train[] trainArray = new Train[15];
+            
+            for(int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < routeArray[i].Length; j++)
+                {
+                    int k = i + j + (int)(i * (i - 1) / 2); // вычисление индекса одномерного массива из треугольного
+                    trainArray[k] = new Train(routeArray[i][j], k + 1, (i + j) * 100 + 1);
+                    Console.WriteLine("Поезд №" + trainArray[k].TrainID + '(' + trainArray[k].Route.Departure + "->" + trainArray[k].Route.Destination + ')');
                 }
             }
 
