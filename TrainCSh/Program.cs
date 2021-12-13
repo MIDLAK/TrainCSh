@@ -7,7 +7,18 @@ namespace TrainCSh
         static void Main(string[] args)
         {
             Passenger passenger = new Passenger();
-            passenger.UserInput();
+            while (true)
+            {
+                try
+                {
+                    passenger.UserInput();
+                    break;
+                } catch
+                {
+                    Console.WriteLine("ВНИМАНИЕ! Произошла ошибка при вводе.Пожалуйста, повторите его.");
+                }
+            }
+            
 
             TrainRoute barnaulOmsk = new TrainRoute();
             DateTime dep = new DateTime(2021, 10, 27, 13, 38, 00);
@@ -23,7 +34,28 @@ namespace TrainCSh
             barnaulOmsk.DepartureDate = dep;
             barnaulOmsk.DestinationDate = des;
 
-            Train train = new Train(barnaulOmsk, 12, 100);
+
+            Console.WriteLine("-----------*Демонстрация конструктора*-----------");
+            Train train = new Train();
+            train.Print();
+            Console.WriteLine("-------------------------------------------------");
+            train = new Train(25);
+            train.Print();
+            Console.WriteLine("-------------------------------------------------");
+            train = new Train(barnaulOmsk, 12, 100);
+            train.Print();
+            Console.WriteLine("-------------------------------------------------");
+
+            Train train1 = new Train(56);
+            Train train2 = new Train(77);
+            Train train3 = new Train(81);
+
+            Depot depot = new Depot(3);
+            depot.ToParkTrain(train1);
+            depot.ToParkTrain(train2);
+            depot.ToParkTrain(train3);
+
+            depot.Print();
 
             Console.WriteLine("Вместимость поезда ДО: " + train.Capacity);
             train++;
@@ -31,8 +63,30 @@ namespace TrainCSh
 
             Ticket ticket = new Ticket(700, 7, passenger, train);
             ticket.Print();
+            TrainRoute.DateFormat = "yyyy-MM-dd HH:mm:ss";
+            ticket.Print();
 
             train.Route = barnaulOmsk + omskEkaterenburg;   //перегрузка оператора '+'
+
+            TrainRoute[][] routeArray = new TrainRoute[][5];
+
+            /*выделение памяти и заполнение двумерного массива*/
+            for (int i = 0; i < 5 ; i+)
+            {
+                routeArray[i] = new TrainRoute[5-i];
+                for (int j = 0; j > routeArray[i].Length; j++)
+                {
+                    routeArray[i][j] = new TrainRoute("пункт №" + i + "" + j, "пункт №" + i + "" + (j + 1), new DateTime(), new DateTime()); 
+                }
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < routeArray[i].Length; j++)
+                {
+                    Console.WriteLine('[' + routeArray[i][j].getDeparture() + "->" + routeArray[i][j].getDestination() + ']');
+                }
+            }
 
         }
     }
